@@ -21,7 +21,7 @@ fetchStock(){
   const pointertothis=this;
   console.log(pointertothis);
   const API_Key='G2GL470EQ5XS0OFJ';
-let StockSymbol = 'FB';
+let StockSymbol = 'AMZN';
 let API_Call = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${StockSymbol}&outputsize=compact&apikey= ${API_Key}`;
 let stockChartXValuesFunction=[];
 let stockChartYValuesFunction=[];
@@ -54,18 +54,21 @@ let stockChartYValuesFunction=[];
   render() {
   return(
     <div>
+    <head>
+    <link rel="stylesheet" href="chartstyle.css"></link>
+    </head>
     <h1>Stock Market</h1>
-    <Plot
+    <Plot class='plotstyle'
         data={[
           {
             x: this.state.stockChartXValues,
             y: this.state.stockChartYValues,
             type: 'scatter',
             mode: 'lines+markers',
-            marker: {color: 'red'},
+            marker: {color: 'white'},
           }
         ]}
-        layout={ {width: 720, height: 440, title: 'Stock Chart'} }
+        layout={ {width: 820, height: 540, title: 'Amazon Stock Chart',plot_bgcolor:'#02717D'} }
       />
     </div>
 
