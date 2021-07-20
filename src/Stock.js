@@ -54,11 +54,8 @@ let stockChartYValuesFunction=[];
   render() {
   return(
     <div>
-    <head>
-    <link rel="stylesheet" href="chartstyle.css"></link>
-    </head>
     <h1>Stock Market</h1>
-    <Plot class='plotstyle'
+    <Plot
         data={[
           {
             x: this.state.stockChartXValues,
