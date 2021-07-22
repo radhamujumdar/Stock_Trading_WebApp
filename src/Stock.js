@@ -65,7 +65,7 @@ let stockChartYValuesFunction=[];
             marker: {color: 'white'},
           }
         ]}
-        layout={ {width: 820, height: 540, title: 'Amazon Stock Chart',plot_bgcolor:'#02717D'} }
+        layout={ {width: 720, height: 440, title: 'Amazon Stock Chart',plot_bgcolor:'#02717D'} }
       />
     </div>
 

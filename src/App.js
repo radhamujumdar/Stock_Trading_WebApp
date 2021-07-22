@@ -12,8 +12,8 @@ function App() {
   return (
     <div className="App">
 
-          <Stock></Stock>
           <Trial></Trial>
+
 
     </div>
   );

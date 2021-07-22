@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: linear-gradient(to right top,#0d0107,#150411,#19081a,#190d22,#16122c,#121834,#0b1e3b,#002441,#002c44,#003343,#003a40,#11403d);
 
 
 }
@@ -17,17 +18,33 @@ code {
   font-family: Arial, Helvetica, sans-serif;
   color: white;
   border-collapse: collapse;
-  width: 100%;
-  background-image: linear-gradient(to right top,#0d0107,#150411,#19081a,#190d22,#16122c,#121834,#0b1e3b,#002441,#002c44,#003343,#003a40,#11403d);
+  width: 50%;
+  /* background-image: linear-gradient(to right top,#0d0107,#150411,#19081a,#190d22,#16122c,#121834,#0b1e3b,#002441,#002c44,#003343,#003a40,#11403d); */
   padding: 40px;
+  padding-left: 10px;
+  float: left;
+
 
 }
 
+.pltstyle{
+  width: 50%;
+  align:right;
+  float: right;
+  color: white;
+  padding-top: 70px;
+}
+
+
 .stocklist td, #customers th {
   border-bottom: 1px solid #ddd;
-  padding: 30px;
+  padding: 18px;
   width:600px;
 
+}
+#symbhover:hover{
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 /* .stocklist tr:nth-child(even){background-color: #f2f2f2;} */
