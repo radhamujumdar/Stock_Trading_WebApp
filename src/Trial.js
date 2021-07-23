@@ -18,7 +18,8 @@ class Trial extends React.Component{
       top_10_stocks:['AAPL','FB','MSFT','AMZN',"IBM","TSLA","GOOGL","XOM","BAC","PYPL"],
       temp_arr:[],
       stockChartXValues:[],
-      stockChartYValues:[]
+      stockChartYValues:[],
+      disp_sym:''
 
 
     }
@@ -57,7 +58,7 @@ pointertothis.setState({temp_arr: temp_arr});
 }
 fetchStock(StockSymbol1){
   const pointertothis=this;
-  console.log(pointertothis);
+//  console.log(pointertothis);
   const API_Key='G2GL470EQ5XS0OFJ';
 let StockSymbol = StockSymbol1;
 let API_Call = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${StockSymbol}&outputsize=compact&apikey= ${API_Key}`;
@@ -71,7 +72,7 @@ let stockChartYValuesFunction=[];
     )
     .then(
       function(data){
-        console.log(data);
+        //console.log(data);
 
         for(var key in data['Time Series (Daily)']){
           stockChartXValuesFunction.push(key);
@@ -81,7 +82,8 @@ let stockChartYValuesFunction=[];
       pointertothis.setState(
         {
           stockChartXValues:stockChartXValuesFunction,
-          stockChartYValues:stockChartYValuesFunction
+          stockChartYValues:stockChartYValuesFunction,
+          disp_sym:StockSymbol
         }
       );
     }
@@ -94,11 +96,12 @@ let stockChartYValuesFunction=[];
 
   render(){
 
-
+    let title1=this.state.disp_sym
+    console.log(title1);
     return (
       <div>
       <head>
-      <link rel="stylesheet" href="index.css"></link>
+      <link rel="stylesheet" href="Trial.css"></link>
       </head>
       <Navbar bg="dark" variant="dark">
     <Container>
@@ -137,6 +140,7 @@ let stockChartYValuesFunction=[];
       </tbody>
       </table>
       <div class="pltstyle">
+      <h1>{title1} Stock Chart</h1>
       <Plot
           data={[
             {
@@ -145,10 +149,11 @@ let stockChartYValuesFunction=[];
               type: 'scatter',
               mode: 'lines+markers',
               marker: {color: 'white'},
+
             }
           ]}
           layout={
-            {width: 720, height: 440, title:'Apple Stock Data',plot_bgcolor:'#02717D'}
+            {width: 720, height: 440,plot_bgcolor:'#02717D'}
            }
         />
       </div>

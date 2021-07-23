@@ -1,22 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
-import Stock from './Stock.js';
-import Dashboard from './Dashboard.js';
-import Trial from './Trial.js';
-//import {temp_arr} from './Trial.js';
-import React,{Component,useState} from 'react';
-
+import {useState} from 'react';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import Login from './login';
+import Trial from './Trial';
+import './login.css';
+import './Trial.css';
 
 function App() {
 
-  return (
-    <div className="App">
-
-          <Trial></Trial>
-
-
-    </div>
-  );
+return (
+	<Router>
+		<div className="App">
+			<Switch>
+				<Route exact path='/'><Login /></Route>
+				<Route path='/Trial'><Trial /></Route>
+			</Switch>
+		</div>
+	</Router>
+	);
 }
 
 export default App;
