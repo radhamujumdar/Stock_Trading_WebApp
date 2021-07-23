@@ -32,7 +32,7 @@ code {
   align:right;
   float: right;
   color: white;
-  padding-top: 70px;
+
 }
 
 
@@ -58,6 +58,10 @@ code {
   background-color: #000000;
   color: white;
   border-bottom: 1px solid #ddd;
+}
+.d-flex{
+  width:350px;
+  padding: 20px;
 }
 /* li{
   margin: 0 0 41px 0;

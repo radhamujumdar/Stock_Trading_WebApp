@@ -19,7 +19,8 @@ class Trial extends React.Component{
       temp_arr:[],
       stockChartXValues:[],
       stockChartYValues:[],
-      disp_sym:''
+      disp_sym:'',
+      disp_marketCap:'',
 
 
     }
@@ -30,8 +31,9 @@ class Trial extends React.Component{
       }
 
 
-async fetchData(){
+async fetchData(marketCap){
     let temp_arr = [];
+    let marketCap_l=marketCap
   const pointertothis=this;
    for(let i=0;i<this.state.top_10_stocks.length;i++){
      const API_token = `https://cloud.iexapis.com/stable/stock/${this.state.top_10_stocks[i]}/quote?token=pk_042790e0f6f844c1a08763c9a03dc892`;
@@ -44,7 +46,7 @@ async fetchData(){
         .then(
           function(data){
 
-             temp_arr.push({symbol:data['symbol'], comp_name:data['companyName'], price:data['latestPrice'], change_p:data['changePercent']});
+             temp_arr.push({symbol:data['symbol'], comp_name:data['companyName'], price:data['latestPrice'], change_p:data['changePercent'],marketCap:data['marketCap']});
 
         }
 
@@ -53,12 +55,18 @@ async fetchData(){
   }
 console.log("Temp Arr"+temp_arr);
 
-pointertothis.setState({temp_arr: temp_arr});
+pointertothis.setState(
+  {
+    temp_arr: temp_arr,
+    disp_marketCap:marketCap_l
+
+  }
+  );
 
 }
 fetchStock(StockSymbol1){
   const pointertothis=this;
-  console.log(pointertothis);
+//  console.log(pointertothis);
   const API_Key='G2GL470EQ5XS0OFJ';
 let StockSymbol = StockSymbol1;
 let API_Call = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${StockSymbol}&outputsize=compact&apikey= ${API_Key}`;
@@ -72,7 +80,7 @@ let stockChartYValuesFunction=[];
     )
     .then(
       function(data){
-        console.log(data);
+        //console.log(data);
 
         for(var key in data['Time Series (Daily)']){
           stockChartXValuesFunction.push(key);
@@ -83,7 +91,7 @@ let stockChartYValuesFunction=[];
         {
           stockChartXValues:stockChartXValuesFunction,
           stockChartYValues:stockChartYValuesFunction,
-          disp_sym:StockSymbol1
+          disp_sym:StockSymbol
         }
       );
     }
@@ -96,8 +104,10 @@ let stockChartYValuesFunction=[];
 
   render(){
 
-    let title1=this.state.disp_sym
+    let title1=this.state.disp_sym;
+    let marketCap1=this.state.disp_marketCap;
     console.log(title1);
+    console.log(marketCap1);
     return (
       <div>
       <head>
@@ -106,15 +116,7 @@ let stockChartYValuesFunction=[];
       <Navbar bg="dark" variant="dark">
     <Container>
     <Navbar.Brand href="#home">TradeX</Navbar.Brand>
-    <Form className="d-flex">
-      <FormControl
-        type="search"
-        placeholder="Search"
-        className="mr-2"
-        aria-label="Search"
-      />
-      <Button variant="outline-success">Search</Button>
-    </Form>
+
     <Nav className="me-auto">
       <Nav.Link href="#home">Watchlist</Nav.Link>
       <Nav.Link href="#features">Orders</Nav.Link>
@@ -122,6 +124,15 @@ let stockChartYValuesFunction=[];
     </Nav>
     </Container>
   </Navbar>
+  <Form className="d-flex">
+    <FormControl
+      type="search"
+      placeholder="Search"
+      className="mr-2"
+      aria-label="Search"
+    />
+    <Button variant="outline-success">Search</Button>
+  </Form>
       <table class="stocklist">
       <thead>
       <tr>
@@ -136,10 +147,14 @@ let stockChartYValuesFunction=[];
       {
         this.state.temp_arr.map((d) => <tr id="symbhover" onClick={() => this.fetchStock(d.symbol)}><td>{d.symbol}</td><td>{d.comp_name}</td><td>{d.price}</td><td>{d.change_p}</td></tr>)
       }
+      {
+        this.state.temp_arr.map((d) => <tr id="symbhover" onClick={() => this.fetchData(d.marketCap)}></tr>)
+      }
 
       </tbody>
       </table>
       <div class="pltstyle">
+      <h1>{title1} Stock Chart</h1>
       <Plot
           data={[
             {
@@ -152,9 +167,10 @@ let stockChartYValuesFunction=[];
             }
           ]}
           layout={
-            {width: 720, height: 440, title:{title1}+"Stock Chart",plot_bgcolor:'#02717D'}
+            {width: 720, height: 440,plot_bgcolor:'#02717D'}
            }
         />
+        <h3>{marketCap1}</h3>
       </div>
       </div>
 
