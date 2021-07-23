@@ -111,7 +111,7 @@ let stockChartYValuesFunction=[];
     return (
       <div>
       <head>
-      <link rel="stylesheet" href="index.css"></link>
+      <link rel="stylesheet" href="Trial.css"></link>
       </head>
       <Navbar bg="dark" variant="dark">
     <Container>
