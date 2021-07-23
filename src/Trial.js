@@ -18,7 +18,8 @@ class Trial extends React.Component{
       top_10_stocks:['AAPL','FB','MSFT','AMZN',"IBM","TSLA","GOOGL","XOM","BAC","PYPL"],
       temp_arr:[],
       stockChartXValues:[],
-      stockChartYValues:[]
+      stockChartYValues:[],
+      disp_sym:''
 
 
     }
@@ -81,7 +82,8 @@ let stockChartYValuesFunction=[];
       pointertothis.setState(
         {
           stockChartXValues:stockChartXValuesFunction,
-          stockChartYValues:stockChartYValuesFunction
+          stockChartYValues:stockChartYValuesFunction,
+          disp_sym:StockSymbol1
         }
       );
     }
@@ -94,7 +96,8 @@ let stockChartYValuesFunction=[];
 
   render(){
 
-
+    let title1=this.state.disp_sym
+    console.log(title1);
     return (
       <div>
       <head>
@@ -145,10 +148,11 @@ let stockChartYValuesFunction=[];
               type: 'scatter',
               mode: 'lines+markers',
               marker: {color: 'white'},
+
             }
           ]}
           layout={
-            {width: 720, height: 440, title:'Apple Stock Data',plot_bgcolor:'#02717D'}
+            {width: 720, height: 440, title:{title1}+"Stock Chart",plot_bgcolor:'#02717D'}
            }
         />
       </div>
