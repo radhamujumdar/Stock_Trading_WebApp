@@ -37,7 +37,13 @@ const Login = () => {
 										<i className="fas fa-lock"></i>
 										<input type="password" placeholder="Password" onChange={(e) =>setForm({...form, password: e.target.value})}/>
 									</div>
-									<button class="btn solid">Login</button>
+									<button class="btn1 solid">Login</button>
+									<p class="social-text">Or Sign In with Social Platforms</p>
+									<div class="social-media">
+										<a href="#" class="social-icon">
+											<i class="fab fa-google"></i>
+										</a>
+									</div>
 								</form>
 							</div>
 						</div>

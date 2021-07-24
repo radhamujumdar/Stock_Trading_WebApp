@@ -33,6 +33,8 @@ code {
   float: right;
   color: white;
   padding-top: 70px;
+  text-align: center;
+  box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.07);
 }
 
 
@@ -42,6 +44,18 @@ code {
   width:600px;
 
 }
+FormControl{
+  width: 50px;
+  padding-left: 250px;
+  padding-right:250px;
+
+}
+/* .cen_al{
+  text-align: center;
+}
+.leftal{
+  text-align: left;
+} */
 #symbhover:hover{
   text-decoration: underline;
   cursor: pointer;
@@ -51,14 +65,65 @@ code {
 
 .stocklist tr:hover {background-image: linear-gradient(to left top, #051937, #002943, #00353b, #003f23, #314504);}
 
+.stocklist tr{
+  padding: 10px;
+}
+.input-group{
+  display: inline;
+}
+
 .stocklist th {
   padding-top: 12px;
   padding-bottom: 12px;
-  text-align: center;
+  text-align: left;
   background-color: #000000;
   color: white;
   border-bottom: 1px solid #ddd;
+  padding: 23px;
 }
+.btn2 {
+  background-color: DodgerBlue; /* Blue background */
+  border: none; /* Remove borders */
+  color: white; /* White text */
+  padding: 5px 9px; /* Some padding */
+  font-size: 16px; /* Set a font size */
+  cursor: pointer; /* Mouse pointer on hover */
+}
+.scrl{
+    overflow:scroll;
+    height: 650px;
+    overflow-x: hidden;
+    /* padding-top: 55px; */
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: grey;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #000;
+}
+
+/* .header{
+  position: fixed;
+} */
+/* Darker background on mouse-over */
+.btn2:hover {
+  background-color: RoyalBlue;
+}
+
 /* li{
   margin: 0 0 41px 0;
 
