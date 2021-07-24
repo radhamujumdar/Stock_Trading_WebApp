@@ -108,7 +108,7 @@ form {
 }
 
 
-.btn {
+.btn1 {
   width: 150px;
   height: 49px;
   outline: none;
@@ -123,7 +123,7 @@ form {
 }
 
 
-.btn:hover {
+.btn1:hover {
   background-color: #25A55F;
 }
 
@@ -174,7 +174,7 @@ form {
 }
 
 
-form.sign-in-form {
+ form.sign-in-form {
   z-index: 2;
 }
 
