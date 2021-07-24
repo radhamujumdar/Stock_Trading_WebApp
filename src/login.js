@@ -15,7 +15,6 @@ const Login = () => {
 		await login(form);
 		console.log('Logged in')
 		history.push('/Trial')
-		// return <Redirect to="/Trial" />
 	}
 	return (
 		<div>
@@ -39,12 +38,6 @@ const Login = () => {
 										<input type="password" placeholder="Password" onChange={(e) =>setForm({...form, password: e.target.value})}/>
 									</div>
 									<button class="btn solid">Login</button>
-									<p class="social-text">Or Sign In with Social Platforms</p>
-									<div class="social-media">
-										<a href="#" class="social-icon">
-											<i class="fab fa-google"></i>
-										</a>
-									</div>
 								</form>
 							</div>
 						</div>

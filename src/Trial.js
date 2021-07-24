@@ -20,8 +20,6 @@ class Trial extends React.Component{
       stockChartXValues:[],
       stockChartYValues:[],
       disp_sym:''
-
-
     }
   }
   componentDidMount(){
