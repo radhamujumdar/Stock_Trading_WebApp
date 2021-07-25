@@ -127,54 +127,75 @@ let stockChartYValuesFunction=[];
     </Nav>
     </Container>
   </Navbar>
-  <div class="input-group">
-  <input size="10" type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
-    aria-describedby="search-addon" />
-  <button type="button" class="btn btn-outline-primary">search</button>
-</div>
-      <table class="stocklist">
-      <thead>
-      <tr>
-      <div class="header">
-      <th>Symbol</th>
-      <th>Company Name</th>
-      <th>Latest Price</th>
-      <th>Change Percent</th>
-      <th>Add to Watchlist</th>
-      </div>
-      </tr>
-      </thead>
-      <tbody>
-      <div class="scrl">
-      {
-        this.state.temp_arr.map((d) => <tr id="symbhover" onClick={() => this.fetchStock(d.symbol)}><td class="leftal">{d.symbol}</td><td class="leftal">{d.comp_name}</td><td class="leftal">{d.price}</td><td class="leftal">{d.change_p}</td><td><button class="btn2"><i class="fa fa-plus"></i></button></td></tr>)
-      }
-      {
-        this.state.temp_arr.map((d) => <tr id="symbhover" onClick={() => this.fetchData(d.marketCap)}></tr>)
-      }
-      </div>
-      </tbody>
-      </table>
-      <div class="pltstyle">
-      <h1>{title1} Stock Chart</h1>
-      <Plot
-          data={[
-            {
-              x: this.state.stockChartXValues,
-              y: this.state.stockChartYValues,
-              type: 'scatter',
-              mode: 'lines+markers',
-              marker: {color: 'white'},
 
-            }
-          ]}
-          layout={
-            {width: 720, height: 440,plot_bgcolor:'#02717D',paper_bgcolor: 'rgba(0,0,0,0)',}
-           }
-        />
-        <h3>{marketCap1}</h3>
+  <div class="main_div">
+  <div class="watchlist_div">
+  <div class="search-container">
+    <form class="form-inline" action="/action_page.php">
+      <input type="text" placeholder="Search.." name="search"></input>
+      <button type="submit"><i class="fa fa-search"></i></button>
+    </form>
+  </div>
+  <table class="stocklist scrl">
+  <thead>
+
+  <tr>
+
+  <th style={{width:"82px"}}>Symbol</th>
+  <th style={{width:"155px"}}>Company Name</th>
+  <th style={{width:"135px"}}>Latest Price</th>
+  <th style={{width:"145px"}}>Change Percent</th>
+  <th style={{width:"100px"}}>Remove</th>
+
+  </tr>
+  </thead>
+  <tbody >
+
+  {
+    this.state.temp_arr.map((d) => <tr id="symbhover" onClick={() => this.fetchStock(d.symbol)}><td style={{width:"70px"}}>{d.symbol}</td><td style={{width:"150px"}}>{d.comp_name}</td><td style={{width:"150px"}}>{d.price}</td><td style={{width:"150px"}} >{d.change_p}</td><td style={{width:"100px"}}><button class="btn2"><i class="fa fa-plus"></i></button></td></tr>)
+  }
+  {
+    this.state.temp_arr.map((d) => <tr id="symbhover" onClick={() => this.fetchData(d.marketCap)}></tr>)
+  }
+
+  </tbody>
+  </table>
+  </div>
+  <div class="chart_div">
+  <div class="pltstyle">
+  <h1>{title1} Stock Chart</h1>
+  <Plot
+      data={[
+        {
+          x: this.state.stockChartXValues,
+          y: this.state.stockChartYValues,
+          type: 'scatter',
+          mode: 'lines+markers',
+          marker: {color: 'white'},
+
+        }
+      ]}
+      layout={
+        {width: 720, height: 440,plot_bgcolor:'#02717D',margin: {
+l: 50,
+r: 50,
+b: 50,
+t: 50,
+pad: 4
+},font: {
+size: 16,
+color: '#000'
+},}
+       }
+    />
+    <h3>{marketCap1}</h3>
+  </div>
+  </div>
+  </div>
+
+
       </div>
-      </div>
+
 
 
     )
