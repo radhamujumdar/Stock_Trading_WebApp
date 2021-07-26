@@ -66,13 +66,16 @@ code {
   text-decoration: underline;
   cursor: pointer;
 }
+.leftal{
+  text-align: left;
 
+}
 /* .stocklist tr:nth-child(even){background-color: #f2f2f2;} */
 
 .stocklist tr:hover {background-image: linear-gradient(to left top, #051937, #002943, #00353b, #003f23, #314504);}
 
 .stocklist tr{
-  padding: 10px;
+  padding: 5px;
 }
 .main_div{
   margin: 0px;
