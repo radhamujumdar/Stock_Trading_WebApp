@@ -13,7 +13,6 @@ import Plotly from "plotly.js";
 import createPlotlyComponent from 'react-plotly.js/factory';
 const Plot = createPlotlyComponent(Plotly);
 
-
 class Trial extends React.Component{
   constructor(props){
     super(props);
@@ -24,10 +23,10 @@ class Trial extends React.Component{
       stockChartYValues:[],
       disp_sym:'',
       disp_marketCap:'',
-
-
     }
   }
+
+
   componentDidMount(){
   this.fetchData();
   this.fetchStock();
@@ -67,6 +66,7 @@ pointertothis.setState(
   );
 
 }
+
 fetchStock(StockSymbol1='AAPL'){
   const pointertothis=this;
 //  console.log(pointertothis);
@@ -101,7 +101,6 @@ let stockChartYValuesFunction=[];
     )
 
 }
-
 
 
 
@@ -147,7 +146,8 @@ let stockChartYValuesFunction=[];
       <tbody>
       <div class="scrl">
       {
-        this.state.temp_arr.map((d) => <tr id="symbhover" onClick={() => this.fetchStock(d.symbol)}><td class="leftal">{d.symbol}</td><td class="leftal">{d.comp_name}</td><td class="leftal">{d.price}</td><td class="leftal">{d.change_p}</td><td><button class="btn2"><i class="fa fa-plus"></i></button></td></tr>)
+        this.state.temp_arr.map((d) => <tr id="symbhover" onClick={() => this.fetchStock(d.symbol)}><td class="leftal">{d.symbol}</td><td class="leftal">{d.comp_name}</td><td class="leftal">{d.price}</td>
+        <td class="leftal">{d.change_p}</td><td><button class="btn2"><i class="fa fa-plus"></i></button></td></tr>)
       }
       {
         this.state.temp_arr.map((d) => <tr id="symbhover" onClick={() => this.fetchData(d.marketCap)}></tr>)
