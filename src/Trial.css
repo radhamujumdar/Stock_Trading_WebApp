@@ -85,6 +85,25 @@ code {
   gap:20px;
 }
 
+.right-column {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+}
+
+.params {
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  color: white;
+  gap:20px;
+}
+
+.row-1-param {
+  grid-template-columns: 1fr 1fr 1fr;
+  color: white;
+  gap:20px;
+}
+
+
 .stocklist th {
   background-color: #000000;
   color: white;
