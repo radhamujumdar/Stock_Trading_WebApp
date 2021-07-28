@@ -15,7 +15,6 @@ const Login = () => {
 		await login(form);
 		console.log('Logged in')
 		history.push('/Trial')
-		// return <Redirect to="/Trial" />
 	}
 	return (
 		<div>
