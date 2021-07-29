@@ -8,13 +8,21 @@ const Login = () => {
 	let history = useHistory();
 	const [form,setForm] = useState({
 		email:'',
-		password:''
+		password:'',
+		error:''
 	})
 	const handleSubmit = async(e)=>{
 		e.preventDefault();
-		await login(form);
-		console.log('Logged in')
-		history.push('/Trial')
+		let a = await login(form);
+		console.log(a);
+		if(typeof a !== "undefined") {
+			console.log('Logged in')
+			history.push('/Trial')
+		}
+		else {
+			form.error = "Invalid Email or Password";
+		}
+		console.log(e);
 	}
 	return (
 		<div>
@@ -38,12 +46,7 @@ const Login = () => {
 										<input type="password" placeholder="Password" onChange={(e) =>setForm({...form, password: e.target.value})}/>
 									</div>
 									<button class="btn1 solid">Login</button>
-									<p class="social-text">Or Sign In with Social Platforms</p>
-									<div class="social-media">
-										<a href="#" class="social-icon">
-											<i class="fab fa-google"></i>
-										</a>
-									</div>
+									<p className="style1">{form.error}</p>
 								</form>
 							</div>
 						</div>
