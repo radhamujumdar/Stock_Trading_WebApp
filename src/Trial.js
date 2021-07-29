@@ -12,6 +12,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import Plotly from "plotly.js";
 import createPlotlyComponent from 'react-plotly.js/factory';
+import { useHistory } from 'react-router-dom';
+
 const Plot = createPlotlyComponent(Plotly);
 
 
@@ -119,7 +121,17 @@ class Trial extends React.Component{
       .then(
         function(data){
 
-          param_arr.push({open:data['open'], high:data['high'], low:data['low'], marketCap:data['marketCap'],peRatio:data['peRatio'],week52High:data['week52High'],week52Low:data['week52Low'],previousClose:data['previousClose']});
+          param_arr.push({
+            open:data['open'], 
+            high:data['high'], 
+            low:data['low'], 
+            marketCap:data['marketCap'],
+            peRatio:data['peRatio'],
+            week52High:data['week52High'],
+            week52Low:data['week52Low'],
+            previousClose:data['previousClose'],
+            change:data['change']
+          });
 
         }
 
@@ -131,7 +143,6 @@ class Trial extends React.Component{
     pointertothis.setState(
       {
         param_arr:param_arr,
-
       }
     );
   }
@@ -139,8 +150,9 @@ class Trial extends React.Component{
   addToWatchlist = (symbol1) => {
     db.collection('Watchlist')
     .add({
-      symbol: symbol1
+      symbol: symbol1.symbol
     })
+    console.log(symbol1);
   }
 
   // paramIsNull = (param1) => {
@@ -148,6 +160,11 @@ class Trial extends React.Component{
   //     vkh
   //   else
   //     -
+  // }
+
+  // const goToHomePage = () => {
+  //   let history = useHistory();
+  //   history.push('/Trial');
   // }
 
   render(){
@@ -161,11 +178,11 @@ class Trial extends React.Component{
       </head>
       <Navbar bg="dark" variant="dark">
       <Container>
-      <Navbar.Brand href="#home">TradeX</Navbar.Brand>
+      <Navbar.Brand href="#home" class="font-style">TradeX</Navbar.Brand>
       <Nav className="me-auto">
-      <Nav.Link href="#watchlist">Watchlist</Nav.Link>
-      <Nav.Link href="#orders">Orders</Nav.Link>
-      <Nav.Link href="#portfolio">Portfolio</Nav.Link>
+      <Nav.Link href="#watchlist" class="font-style">Watchlist</Nav.Link>
+      {/* <Nav.Link href="#orders" class="font-style">Orders</Nav.Link>
+      <Nav.Link href="#portfolio" class="font-style">Portfolio</Nav.Link> */}
       </Nav>
       </Container>
       </Navbar>
@@ -174,26 +191,50 @@ class Trial extends React.Component{
         <div class="watchlist_div">
           <div class="search-container">
             <form class="form-inline" action="/action_page.php">
-              <input type="text" placeholder="Search.." name="search"></input>
-              <button type="submit"><i class="fa fa-search"></i></button>
+              <input type="text" placeholder="  Search by Company Name" name="search" class="input-style"></input>
             </form>
           </div>
         <table class="stocklist scrl">
         <thead>
-          <tr>
+          <tr class="font-style">
         <th style={{width:"90px"}}>Symbol</th>
         <th style={{width:"240px"}}>Company Name</th>
         <th style={{width:"135px"}}>Latest Price</th>
-        <th style={{width:"145px"}}>Change Percent</th>
+        <th style={{width:"145px"}}>Change %</th>
         <th style={{width:"90px"}}>Watchlist</th>
 
         </tr>
         </thead>
-        <tbody >
+        <tbody  class="font-style">
 
         {
-          this.state.temp_arr.map((d) => <tr><td id="symbhover" onClick={() => this.fetchStock(d.symbol)} style={{width:"90px"}}>{d.symbol}</td><td style={{width:"240px"}}>{d.comp_name}</td>
-          <td class="leftal" style={{width:"135px"}}>{d.price}</td><td class="leftal" style={{width:"145px"}}>{d.change_p}</td><td style={{width:"90px"}}><button class="btn2 leftal" onClick={this.addToWatchlist(d.symbol)}><i class="fa fa-plus"></i></button></td></tr>)
+          this.state.temp_arr.map((d) => 
+            <tr>
+              <td style={{width:"90px"}}>
+                <label  id="symbhover" onClick={() => this.fetchStock(d.symbol)}>{d.symbol}</label>
+              </td>
+              
+              <td style={{width:"240px"}}>
+                {d.comp_name}
+              </td>
+              
+              <td style={{width:"145px"}} className="align1">
+                {d.price}
+              </td>
+              
+              {
+                d.change_p < 0 ? (
+                  <td class="red" style={{width:"135px"}}>{d.change_p}</td>
+                ): <td class="green" style={{width:"135px"}}>{d.change_p}</td>
+              }
+              
+              <td style={{width:"90px"}}>
+                <button class="btn2 leftal" onClick={() => this.addToWatchlist(d)}>
+                  <i class="fa fa-plus"></i>
+                </button>
+              </td>
+            </tr>
+          )
         }
 
 
@@ -203,7 +244,7 @@ class Trial extends React.Component{
         <div class="right-column">
           <div class="chart_div">
             <div class="pltstyle">
-              <h3>{title1} Stock Chart</h3>
+              <h3 class="font-style-chart-title">{title1} Stock Chart</h3>
               <Plot
               data={[
                 {
@@ -211,12 +252,12 @@ class Trial extends React.Component{
                   y: this.state.stockChartYValues,
                   type: 'scatter',
                   mode: 'lines+markers',
-                  marker: {color: 'white'},
+                  marker: {color: '#06183A'},
 
                 }
               ]}
               layout={
-                {width: 720, height: 340,plot_bgcolor:'#02717D',margin: {
+                {width: 720, height: 340,margin: {
                   l: 60,
                   r: 50,
                   b: 50,
@@ -237,37 +278,33 @@ class Trial extends React.Component{
                 <div>
                   <div class="params">
                     <div>
-                      <div>
-                        <h3>Market Cap</h3>
-                        <h4>${p.marketCap}</h4>
+                      <div class="alignment1">
+                        <p class="font1">Market Cap</p>
+                        <p class="font2">${p.marketCap.toLocaleString()}</p>
                       </div>
-                      <div>
-                        <h3>Open</h3>
-                        <h4>${p.open}</h4>
-                      </div>
-                      <div>
-                        <h3>Previous Close</h3>
-                        <h4>${p.previousClose}</h4>
+                      <div class="alignment2">
+                        <p class="font1">Change</p>
+                        <p class="font2">{p.change}</p>
                       </div>
                     </div>
                     <div>
-                      <div>
-                        <h3>P/E Ratio</h3>
-                        <h4>{p.peRatio}</h4>
+                      <div class="alignment1">
+                        <p class="font1">P/E Ratio</p>
+                        <p class="font2">{p.peRatio}</p>
                       </div>
-                      <div>
-                        <h3>Low</h3>
-                        <h4>${p.low}</h4>
+                      <div class="alignment2">
+                        <p class="font1">52-week Low</p>
+                        <p class="font2">${p.week52Low.toLocaleString()}</p>
                       </div>
                     </div>
                     <div>
-                      <div>
-                        <h3>52-week High</h3>
-                        <h4>${p.week52High}</h4>
+                      <div class="alignment1">
+                        <p class="font1">Previous Close</p>
+                        <p class="font2">${p.previousClose.toLocaleString()}</p>
                       </div>
-                      <div>
-                        <h3>52-week Low</h3>
-                        <h4>${p.week52Low}</h4>
+                      <div class="alignment2">
+                        <p class="font1">52-week High</p>
+                        <p class="font2">${p.week52High.toLocaleString()}</p>
                       </div>
                     </div>
                   </div>

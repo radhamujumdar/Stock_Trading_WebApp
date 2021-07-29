@@ -50,6 +50,9 @@ input {
   /* transition: 1.8s ease-in-out; */
 }
 
+.style1 {
+  color: white;
+}
 
 form {
   display: flex;
