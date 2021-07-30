@@ -21,7 +21,7 @@ code {
   border-collapse: collapse;
   width: 100%;
   /* background-image: linear-gradient(to right top,#0d0107,#150411,#19081a,#190d22,#16122c,#121834,#0b1e3b,#002441,#002c44,#003343,#003a40,#11403d); */
-  /* padding: 10px; */
+  padding-top: 23px;
   float: left;
 
 
@@ -49,10 +49,23 @@ code {
   padding: 10px;
 }
 
-.font-style {
-  font-family: 'Work Sans', sans-serif;
+.font-style1 {
+  font-size: 30px;
+}
+
+.font-style2 {
+  /* font-family: 'Work Sans', sans-serif; */
   font-size: 16px;
-  font-weight: 600px;
+  float: right;
+  /* font-weight: 600px; */
+  padding-top: 2px;
+  text-decoration: none;
+  color: white;
+  font-weight: 400;
+}
+
+.font-style2:hover {
+  color: grey;
 }
 
 .font-style-chart-title {
@@ -132,7 +145,7 @@ code {
 
 
 tbody{
-  height: 530px;
+  height: 577px;
     overflow: auto;
     display: inline-block;
     width: 100%;
@@ -190,8 +203,8 @@ tbody{
   height: 210px; 
   margin-top: 10px;
   margin-left: 12px;
-  -webkit-box-shadow: 0 0 10px #fff;
-  box-shadow: 0 0 10px #11403D;
+  -webkit-box-shadow: 0 0 15px #fff;
+  box-shadow: 0 0 15px #11403D;
   background-image: linear-gradient(to right top, #0d0107, #150411, #19081a, #190d22, #16122c, #121834, #0b1e3b, #002441, #002c44, #003343, #003a40, #11403d);
 }
 
@@ -208,7 +221,7 @@ tbody{
 .font1 {    
   font-family: 'Work Sans', sans-serif;
   font-size: 21px;
-  font-weight: 400;
+  font-weight: 500;
 }
 
 .font2 {

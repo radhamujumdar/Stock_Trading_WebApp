@@ -20,7 +20,7 @@ const Login = () => {
 			history.push('/Trial')
 		}
 		else {
-			form.error = "Invalid Email or Password";
+			setForm({email:'', password:'', error: "Invalid Email or Password!"});
 		}
 		console.log(e);
 	}
