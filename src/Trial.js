@@ -12,7 +12,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import Plotly from "plotly.js";
 import createPlotlyComponent from 'react-plotly.js/factory';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 
 const Plot = createPlotlyComponent(Plotly);
 
@@ -21,14 +21,12 @@ class Trial extends React.Component{
   constructor(props){
     super(props);
     this.state={
-      top_10_stocks:['AAPL','FB','MSFT','AMZN',"IBM","TSLA","GOOGL","XOM","BAC","PYPL","TWTR","NFLX"],
+      top_10_stocks:['AAPL','FB','MSFT','AMZN',"IBM","TSLA","GOOGL","XOM","BAC","PYPL","TWTR","NFLX","PINS","CRM","DIS"],
       temp_arr:[],
       param_arr:[],
       stockChartXValues:[],
       stockChartYValues:[],
       disp_sym:'',
-
-
     }
   }
 
@@ -155,17 +153,9 @@ class Trial extends React.Component{
     console.log(symbol1);
   }
 
-  // paramIsNull = (param1) => {
-  //   if(param1)
-  //     vkh
-  //   else
-  //     -
-  // }
-
-  // const goToHomePage = () => {
-  //   let history = useHistory();
-  //   history.push('/Trial');
-  // }
+  goToWatchlist = () => {
+    this.props.history.push('/Watchlist')
+  }
 
   render(){
     let title1=this.state.disp_sym;
@@ -178,22 +168,27 @@ class Trial extends React.Component{
       </head>
       <Navbar bg="dark" variant="dark">
       <Container>
-      <Navbar.Brand href="#home" class="font-style">TradeX</Navbar.Brand>
-      <Nav className="me-auto">
-      <Nav.Link href="#watchlist" class="font-style">Watchlist</Nav.Link>
-      {/* <Nav.Link href="#orders" class="font-style">Orders</Nav.Link>
-      <Nav.Link href="#portfolio" class="font-style">Portfolio</Nav.Link> */}
-      </Nav>
+        <Navbar.Brand href="/Trial" class="font-style1">TradeX</Navbar.Brand>
+        <Nav className="ml-auto">
+        <Nav.Link >
+          <Link class="font-style2" to="/Watchlist">Watchlist</Link>
+        </Nav.Link>
+        <Nav.Link>
+          <Link class="font-style2" to="/">Logout</Link>
+        </Nav.Link>
+        {/* <Nav.Link href="#orders" class="font-style">Orders</Nav.Link>
+        <Nav.Link href="#portfolio" class="font-style">Portfolio</Nav.Link> */}
+        </Nav>
       </Container>
       </Navbar>
 
       <div class="main_div">
         <div class="watchlist_div">
-          <div class="search-container">
+          {/* <div class="search-container">
             <form class="form-inline" action="/action_page.php">
               <input type="text" placeholder="  Search by Company Name" name="search" class="input-style"></input>
             </form>
-          </div>
+          </div> */}
         <table class="stocklist scrl">
         <thead>
           <tr class="font-style">

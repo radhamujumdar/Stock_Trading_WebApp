@@ -1,0 +1,8 @@
+.watchlist-style {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.bg {
+    background-repeat: no-repeat;
+}
