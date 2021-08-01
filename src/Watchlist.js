@@ -2,6 +2,11 @@ import React from 'react'
 import {db, auth} from './firebase'
 import firebase from 'firebase';
 import Abc from './Abc';
+import Navbar from 'react-bootstrap/Navbar';
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import { useHistory, Link } from 'react-router-dom';
+import logo from './static/logo.png';
 
 class Watchlist extends React.Component {
     constructor(props) {
@@ -28,56 +33,34 @@ class Watchlist extends React.Component {
         }).catch( error => console.log(error) )
     }
 
-
-    // async fetchData(){
-    //   console.log("abc", this.state.stocks);
-    //     let temp_arr = [];
-    //     const pointertothis=this;
-    //     for(let i=0;i<this.state.stocks.length;i++){
-    //       const API_token = `https://cloud.iexapis.com/stable/stock/${this.state.stocks[i]}/quote?token=pk_042790e0f6f844c1a08763c9a03dc892`;
-    //       await fetch(API_token)
-    //       .then(
-    //         function(response){
-    //           return response.json();
-    //         }
-    //       )
-    //       .then(
-    //         function(data){
-    
-    //           temp_arr.push({symbol:data['symbol'], comp_name:data['companyName'], price:data['latestPrice'], change_p:data['changePercent'],marketCap:data['marketCap']});
-    
-    //         }
-    
-    //       )
-    //     }
-        
-        
-    //     pointertothis.setState(
-    //       {
-    //         temp_arr: temp_arr
-    
-    //       }
-    //     );
-    //     console.log(temp_arr);
-    //   }
-
     render() {
       console.log("abc", this.state.stocks);
         return (
             <div className="App">
-                <h1 style={{color:"white"}}>Watchlist</h1>
+              <head>
+                <link rel="stylesheet" href="Trial.css"></link>
+                <link rel="preconnect" href="https://fonts.googleapis.com" />
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+                <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;1,200;1,300&display=swap" rel="stylesheet" />    
+              </head>
+                
+                <Navbar bg="dark" variant="dark">
+                  <Container>
+                  <Navbar.Brand href="/Trial" class="font-style1"><img src={logo} class="brand-style"/>TradeX</Navbar.Brand>
+                    <Nav className="ml-auto">
+                    <Nav.Link >
+                      <Link class="font-style2" to="/Watchlist">Watchlist</Link>
+                    </Nav.Link>
+                    <Nav.Link>
+                      <Link class="font-style2" to="/">Logout</Link>
+                    </Nav.Link>
+                    </Nav>
+                  </Container>
+                </Navbar>
+              
+                <h1 style={{color:"white"}} class="align-title">Your Watchlist</h1>
                 {
-                  this.state.stocks.map(({symbol, companyName}, index) => (<Abc key={index} symbol={symbol} companyName={companyName}/>))
-                        
-                    // this.state.temp_arr &&
-                    // this.state.temp_arr.map( stock => {
-                    //     return (
-                    //         <div>
-                    //             <p>{stock.comp_name}</p>
-                    //             <p>{stock.symbol}</p>
-                    //         </div>
-                    //     )
-                    // })
+                  this.state.stocks.map(({symbol}, index) => (<Abc key={index} symbol={symbol}/>))
                 }
             </div>
         )

@@ -13,6 +13,7 @@ import axios from 'axios';
 import Plotly from "plotly.js";
 import createPlotlyComponent from 'react-plotly.js/factory';
 import { useHistory, Link } from 'react-router-dom';
+import logo from './static/logo.png';
 
 const Plot = createPlotlyComponent(Plotly);
 
@@ -42,7 +43,7 @@ class Trial extends React.Component{
     let temp_arr = [];
     const pointertothis=this;
     for(let i=0;i<this.state.top_10_stocks.length;i++){
-      const API_token = `https://cloud.iexapis.com/stable/stock/${this.state.top_10_stocks[i]}/quote?token=pk_042790e0f6f844c1a08763c9a03dc892`;
+      const API_token = `https://cloud.iexapis.com/stable/stock/${this.state.top_10_stocks[i]}/quote?token=pk_fa109b03b4aa44088db504872ebef4f3 `;
       await fetch(API_token)
       .then(
         function(response){
@@ -109,7 +110,7 @@ class Trial extends React.Component{
     let param_arr = [];
     const pointertothis=this;
     let param_sym=paramsy;
-      const API_token = `https://cloud.iexapis.com/stable/stock/${param_sym}/quote?token=pk_042790e0f6f844c1a08763c9a03dc892`;
+      const API_token = `https://cloud.iexapis.com/stable/stock/${param_sym}/quote?token=pk_fa109b03b4aa44088db504872ebef4f3 `;
       await fetch(API_token)
       .then(
         function(response){
@@ -168,7 +169,7 @@ class Trial extends React.Component{
       </head>
       <Navbar bg="dark" variant="dark">
       <Container>
-        <Navbar.Brand href="/Trial" class="font-style1">TradeX</Navbar.Brand>
+        <Navbar.Brand href="/Trial" class="font-style1"><img src={logo} class="brand-style"/>TradeX</Navbar.Brand>
         <Nav className="ml-auto">
         <Nav.Link >
           <Link class="font-style2" to="/Watchlist">Watchlist</Link>
@@ -176,20 +177,13 @@ class Trial extends React.Component{
         <Nav.Link>
           <Link class="font-style2" to="/">Logout</Link>
         </Nav.Link>
-        {/* <Nav.Link href="#orders" class="font-style">Orders</Nav.Link>
-        <Nav.Link href="#portfolio" class="font-style">Portfolio</Nav.Link> */}
         </Nav>
       </Container>
       </Navbar>
 
       <div class="main_div">
-        <div class="watchlist_div">
-          {/* <div class="search-container">
-            <form class="form-inline" action="/action_page.php">
-              <input type="text" placeholder="  Search by Company Name" name="search" class="input-style"></input>
-            </form>
-          </div> */}
-        <table class="stocklist scrl">
+        <div class="dashboard_div">
+        <div class="stocklist scrl">
         <thead>
           <tr class="font-style">
         <th style={{width:"90px"}}>Symbol</th>
@@ -219,12 +213,12 @@ class Trial extends React.Component{
               
               {
                 d.change_p < 0 ? (
-                  <td class="red" style={{width:"135px"}}>{d.change_p}</td>
-                ): <td class="green" style={{width:"135px"}}>{d.change_p}</td>
+                  <td class="red" style={{width:"135px"}}>{parseFloat(d.change_p*100).toFixed(2)}% <span>&#x2193;</span></td>
+                ): <td class="green" style={{width:"135px"}}>{parseFloat(d.change_p*100).toFixed(2)}% <span>&#x2191;</span></td>
               }
               
               <td style={{width:"90px"}}>
-                <button class="btn2 leftal" onClick={() => this.addToWatchlist(d)}>
+                <button class="btn2 style-button onhover" onClick={() => this.addToWatchlist(d)}>
                   <i class="fa fa-plus"></i>
                 </button>
               </td>
@@ -234,13 +228,13 @@ class Trial extends React.Component{
 
 
         </tbody>
-        </table>
+        </div>
         </div>
         <div class="right-column">
           <div class="chart_div">
             <div class="pltstyle">
               <h3 class="font-style-chart-title">{title1} Stock Chart</h3>
-              <Plot
+              <Plot class="plot-bg"
               data={[
                 {
                   x: this.state.stockChartXValues,
@@ -252,7 +246,7 @@ class Trial extends React.Component{
                 }
               ]}
               layout={
-                {width: 720, height: 340,margin: {
+                {width: 720, height: 340, margin: {
                   l: 60,
                   r: 50,
                   b: 50,
@@ -260,7 +254,6 @@ class Trial extends React.Component{
                   pad: 4
                 },font: {
                   size: 16,
-                  color: '#000'
 
                 },}
               }

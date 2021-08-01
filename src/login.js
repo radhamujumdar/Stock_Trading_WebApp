@@ -31,7 +31,7 @@ const Login = () => {
 				<title>Sign In</title>
 				<link rel="stylesheet" href="login.css"></link>
 			</head>
-				<body>
+				<body className="no-scrl">
 					<div className="container1 bg">
 						<div className="forms-container">
 							<div className="signin">

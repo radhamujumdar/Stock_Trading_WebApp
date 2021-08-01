@@ -11,6 +11,7 @@
 body,
 input {
   font-family: 'Montserrat', sans-serif;
+  overflow: auto;
 }
 
 
@@ -76,8 +77,8 @@ form {
 
 
 .input-field {
-  max-width: 380px;
-  width: 100%;
+  max-width: 280px;
+  width: 280px;
   height: 55px;
   margin: 10px 0;
   background-color: #fff;
@@ -196,6 +197,7 @@ form.sign-up-form {
   /* margin-left: 90%; */
   margin-bottom: 0;
   width: 50%;
+  margin-left: 0px;
 }
 
 
@@ -238,9 +240,10 @@ form.sign-up-form {
 
 .panel .content .size{
   color: #fff;
-  font-weight: 600;
+  font-weight: 800;
   font-size: 5rem;
   line-height: 1.6;
+  margin-left: 0px;
 }
 
 
